@@ -1,3 +1,22 @@
 .App {
+  width: 1000px;
+  margin: 0 auto;
   text-align: center;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.main {
+  display: flex;
+}
+
+.add-button {
+  margin: 50px 0px;
+  width: 200px;
+  height: 40px;
+  font-size: 18px;
+  font-weight: 600;
 }

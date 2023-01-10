@@ -1,0 +1,43 @@
+.image-list {
+    width: 800px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.image-item {
+    width: 200px;
+}
+
+.non-selected {
+    border: 2px solid black;
+}
+
+.selected {
+    border: 2px solid lightblue;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.side-container {
+    position: relative;
+}
+
+.sideinfo {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: #a9a9a9;
+    height: 600px;
+    padding: 30px;
+}
+
+input[type=text] {
+    width: 200px;
+    padding: 10px;
+    font-size: 18px;
+}
