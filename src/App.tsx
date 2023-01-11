@@ -1,27 +1,27 @@
-import { imageListState } from "atom/imageAtom";
-import { useRecoilState } from "recoil";
+import { useState } from "react";
 import ImageList from "components/ImageList";
-import SideInfo from "components/SideInfo";
+import SideInfomation from "components/SideInfomation";
+import AddModal from "components/AddModal";
 import "./App.css";
 
 function App() {
-  const [imageList, setImageList] = useRecoilState(imageListState);
-  const counter = imageList.length + 1;
-
-  const addImage = () => {
-    setImageList([...imageList, counter]);
-  };
+  const [isToggle, setIsToggle] = useState(false);
 
   return (
     <div className="App">
       <p className="title">Image List</p>
       <div className="main">
         <ImageList />
-        <SideInfo />
+        <SideInfomation />
       </div>
-      <button className="add-button" type="button" onClick={addImage}>
+      <button
+        className="toggle-button"
+        type="button"
+        onClick={() => setIsToggle(!isToggle)}
+      >
         Add Image
       </button>
+      {isToggle && <AddModal setIsToggle={setIsToggle} />}
     </div>
   );
 }

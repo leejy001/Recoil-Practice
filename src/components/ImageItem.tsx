@@ -1,28 +1,43 @@
-import { useRecoilValue, useRecoilState } from "recoil";
-import { imageState, selectedImageState } from "../atom/imageAtom";
+import { useRecoilState } from "recoil";
+import { imageListState, selectedImageState } from "../store/imageState";
 import "./components.css";
 
-interface IdType {
+interface ImageItemType {
   id: number;
+  title: string;
+  url: string;
 }
 
-function Image({ id }: IdType) {
-  const { name, url }: any = useRecoilValue(imageState(id));
+function Image({ item }: { item: ImageItemType }) {
+  const { id, title, url } = item;
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
+  const [imageList, setImageList] = useRecoilState(imageListState);
 
-  const onClick = () => {
-    setSelectedImage(id);
+  const removeItemAtIndex = (arr: Array<ImageItemType>, index: number) => {
+    return [...arr.slice(0, index), ...arr.slice(index + 1)];
+  };
+
+  const removeItemClick = () => {
+    const index = imageList.findIndex(
+      (listItem: ImageItemType) => listItem.id === id
+    );
+
+    const newList = removeItemAtIndex(imageList, index);
+    setImageList(newList);
   };
 
   return (
     <div className="image-item">
+      <button className="delete-button" type="button" onClick={removeItemClick}>
+        🗑
+      </button>
       <img
         className={selectedImage === id ? "selected" : "non-selected"}
         src={url}
-        alt={name}
-        onMouseDown={onClick}
+        alt={title}
+        onMouseDown={() => setSelectedImage(id)}
       />
-      <div className="name">{name}</div>
+      <div className="name">{title}</div>
     </div>
   );
 }

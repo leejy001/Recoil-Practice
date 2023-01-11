@@ -1,12 +1,29 @@
 .image-list {
-    width: 800px;
+    width: 700px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
+    padding: 20px;
 }
 
 .image-item {
-    width: 200px;
+    position: relative;
+}
+
+.delete-button {
+    display: none;
+    position: absolute;
+    font-size: 30px;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.image-item:hover .delete-button {
+    display: block;
 }
 
 .non-selected {
@@ -30,14 +47,46 @@
     position: fixed;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 30px;
     background-color: #a9a9a9;
-    height: 600px;
+    width: 260px;
+    height: 640px;
     padding: 30px;
 }
 
 input[type=text] {
-    width: 200px;
     padding: 10px;
     font-size: 18px;
+}
+
+.modal-body {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 300px;
+    height: 200px;
+    background-color: #fff;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px;
+    transform: translate(-50%, -50%);
+}
+
+.modal-title {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.modal-button-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-button {
+    width: 120px;
+    height: 30px;
+    cursor: pointer;
 }
