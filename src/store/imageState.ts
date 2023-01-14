@@ -1,10 +1,5 @@
 import { atom, selector } from "recoil";
-
-interface ImageItem {
-  id: number;
-  title: string;
-  url: string;
-}
+import { ImageItemType } from "types/item";
 
 export const selectedImageState = atom({
   key: "selectedImageState",
@@ -13,7 +8,7 @@ export const selectedImageState = atom({
 
 export const imageListState = atom({
   key: "recoilImageState",
-  default: Array<ImageItem>()
+  default: Array<ImageItemType>()
 });
 
 export const recoilImageSelector = selector({
@@ -21,6 +16,6 @@ export const recoilImageSelector = selector({
   get: ({ get }) => {
     const id = get(selectedImageState);
     const list = get(imageListState);
-    return list.filter((item: ImageItem) => id === item.id)[0];
+    return list.filter((item: ImageItemType) => id === item.id)[0];
   }
 });

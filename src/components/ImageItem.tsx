@@ -4,7 +4,7 @@ import { removeItemAtIndex } from "util/editItemList";
 import { imageListState, selectedImageState } from "../store/imageState";
 import "./components.css";
 
-function Image({ item }: { item: ImageItemType }) {
+function ImageItem({ item }: { item: ImageItemType }) {
   const { id, title, url } = item;
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
   const [imageList, setImageList] = useRecoilState(imageListState);
@@ -38,4 +38,4 @@ function Image({ item }: { item: ImageItemType }) {
   );
 }
 
-export default Image;
+export default ImageItem;

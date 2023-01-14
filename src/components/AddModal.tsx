@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { ImageItemType } from "types/item";
+import { ModalType } from "types/modal";
 import { imageListState } from "../store/imageState";
 
-interface PropsType {
-  setIsToggle: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-function AddModal({ setIsToggle }: PropsType) {
+function AddModal({ setIsToggle }: ModalType) {
   const [imageList, setImageList] = useRecoilState(imageListState);
   const [title, setTitle] = useState<string>("");
   const counter =
