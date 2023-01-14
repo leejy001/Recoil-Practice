@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
+import { ImageItemType } from "types/item";
 import { imageListState } from "../store/imageState";
-
-interface ImageItem {
-  id: number;
-  title: string;
-  url: string;
-}
 
 interface PropsType {
   setIsToggle: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,20 +10,21 @@ interface PropsType {
 function AddModal({ setIsToggle }: PropsType) {
   const [imageList, setImageList] = useRecoilState(imageListState);
   const [title, setTitle] = useState<string>("");
-  const counter = imageList.length + 1;
+  const counter =
+    imageList.length > 0 ? imageList[imageList.length - 1].id + 1 : 1;
 
   const handleChange = (event: React.FormEvent) => {
     setTitle((event.target as HTMLInputElement).value);
   };
 
   const addImage = () => {
-    const insertItem: ImageItem = {
+    const insertItem: ImageItemType = {
       id: counter,
       title,
       url: `https://picsum.photos/id/${counter}/200/300`
     };
 
-    setImageList((item: ImageItem[]) => [...item, insertItem]);
+    setImageList((item: ImageItemType[]) => [...item, insertItem]);
     setIsToggle(false);
   };
 

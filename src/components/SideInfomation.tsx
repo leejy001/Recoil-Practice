@@ -1,23 +1,11 @@
 import { useRecoilState, useRecoilValue } from "recoil";
+import { ImageItemType } from "types/item";
+import { replaceItemAtIndex } from "util/editItemList";
 import { imageListState, recoilImageSelector } from "../store/imageState";
-
-interface ImageItemType {
-  id: number;
-  title: string;
-  url: string;
-}
 
 function SideInfomation() {
   const imageItem = useRecoilValue(recoilImageSelector);
   const [imageList, setImageList] = useRecoilState(imageListState);
-
-  const replaceItemAtIndex = (
-    arr: Array<ImageItemType>,
-    index: number,
-    newValue: ImageItemType
-  ) => {
-    return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-  };
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     const { value } = event.target as HTMLInputElement;

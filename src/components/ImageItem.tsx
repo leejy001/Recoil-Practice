@@ -1,23 +1,15 @@
 import { useRecoilState } from "recoil";
+import { ImageItemType } from "types/item";
+import { removeItemAtIndex } from "util/editItemList";
 import { imageListState, selectedImageState } from "../store/imageState";
 import "./components.css";
-
-interface ImageItemType {
-  id: number;
-  title: string;
-  url: string;
-}
 
 function Image({ item }: { item: ImageItemType }) {
   const { id, title, url } = item;
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
   const [imageList, setImageList] = useRecoilState(imageListState);
 
-  const removeItemAtIndex = (arr: Array<ImageItemType>, index: number) => {
-    return [...arr.slice(0, index), ...arr.slice(index + 1)];
-  };
-
-  const removeItemClick = () => {
+  const handleRemoveItem = () => {
     const index = imageList.findIndex(
       (listItem: ImageItemType) => listItem.id === id
     );
@@ -28,7 +20,11 @@ function Image({ item }: { item: ImageItemType }) {
 
   return (
     <div className="image-item">
-      <button className="delete-button" type="button" onClick={removeItemClick}>
+      <button
+        className="delete-button"
+        type="button"
+        onClick={handleRemoveItem}
+      >
         🗑
       </button>
       <img
